@@ -392,27 +392,130 @@ The CSET report identified **57 unmet requirements** at the High SAL level. Top 
 ## Repository Structure
 
 ```
-├── README.md                          # This file
+.
+├── README.md
+│
 ├── docs/
-│   ├── network-diagram.pdf            # Full network topology diagram
-│   ├── enterprise-requirements.pdf    # Challenge requirements document
-│   ├── cset-report.pdf                # CISA CSET assessment report
-│   ├── kanban-progress.pdf            # Kanban board snapshot
-│   └── configuration-guide.pdf        # Detailed host & service configurations
-├── configs/
-│   ├── prometheus/
-│   │   └── prometheus.yml             # Prometheus scrape configuration
-│   ├── grafana/
-│   │   └── custom.ini                 # Grafana server configuration
-│   ├── systemd/
-│   │   ├── prometheus.service         # Prometheus systemd unit
-│   │   ├── grafana.service            # Grafana systemd unit
-│   │   └── node_exporter.service      # Node exporter systemd unit
-│   └── database/
-│       └── academy_schema.sql         # MariaDB database schema
-├── scripts/
-│   └── monitoring-setup.sh            # Monitoring stack deployment script
-└── screenshots/                       # Configuration evidence & dashboards
+│   ├── network-diagram.pdf
+│   ├── enterprise-requirements.pdf
+│   ├── task-assignment.pdf
+│   ├── cset-report.pdf
+│   ├── kanban-progress.pdf
+│   └── cyberlab-guidelines.pdf
+│
+├── vms/
+│   ├── opnsense-firewall/
+│   │   ├── CONFIGURATION.md
+│   │   ├── screenshots/
+│   │   │   ├── interface-config.png
+│   │   │   ├── firewall-rules.png
+│   │   │   ├── static-route.png
+│   │   │   ├── gateway-config.png
+│   │   │   └── prometheus-exporter.png
+│   │   └── configs/
+│   │       └── firewall-rules.txt
+│   │
+│   ├── vyos-router-lan/
+│   │   ├── CONFIGURATION.md
+│   │   ├── screenshots/
+│   │   └── configs/
+│   │       ├── interfaces.conf
+│   │       └── routes.conf
+│   │
+│   ├── vyos-router-wan/
+│   │   ├── CONFIGURATION.md
+│   │   ├── screenshots/
+│   │   └── configs/
+│   │       ├── interfaces.conf
+│   │       ├── routes.conf
+│   │       └── nat.conf
+│   │
+│   ├── windows-ad-dns/
+│   │   ├── CONFIGURATION.md
+│   │   ├── screenshots/
+│   │   │   ├── roles-features-wizard.png
+│   │   │   ├── ad-promote.png
+│   │   │   ├── new-forest.png
+│   │   │   ├── ou-config.png
+│   │   │   ├── ftp-site-config.png
+│   │   │   ├── ftp-firewall-rule.png
+│   │   │   └── mailenable-setup.png
+│   │   └── configs/
+│   │       ├── domain-setup.md
+│   │       ├── ou-and-groups.md
+│   │       ├── ftp-server-setup.md
+│   │       └── mail-server-setup.md
+│   │
+│   ├── windows-11-client/
+│   │   ├── CONFIGURATION.md
+│   │   ├── screenshots/
+│   │   │   ├── domain-join.png
+│   │   │   ├── icmp-outbound-rule.png
+│   │   │   ├── windows-exporter-service.png
+│   │   │   └── grafana-dashboard.png
+│   │   └── configs/
+│   │       ├── domain-join.md
+│   │       └── firewall-rules.md
+│   │
+│   ├── rhel-client/
+│   │   ├── CONFIGURATION.md
+│   │   ├── screenshots/
+│   │   │   ├── realm-join.png
+│   │   │   ├── chrony-sources.png
+│   │   │   ├── prometheus-targets.png
+│   │   │   ├── grafana-datasource.png
+│   │   │   ├── grafana-opnsense-dashboard.png
+│   │   │   ├── grafana-windows-dashboard.png
+│   │   │   └── zabbix-error-log.png
+│   │   └── configs/
+│   │       ├── systemd/
+│   │       │   ├── prometheus.service
+│   │       │   ├── grafana.service
+│   │       │   └── node_exporter.service
+│   │       ├── prometheus/
+│   │       │   └── prometheus.yml
+│   │       ├── grafana/
+│   │       │   └── custom.ini
+│   │       ├── domain-join.sh
+│   │       └── chrony.conf
+│   │
+│   ├── rhel-database/
+│   │   ├── CONFIGURATION.md
+│   │   ├── screenshots/
+│   │   │   ├── realm-join.png
+│   │   │   ├── mariadb-status.png
+│   │   │   ├── show-tables.png
+│   │   │   ├── customers-table.png
+│   │   │   ├── orders-table.png
+│   │   │   ├── products-table.png
+│   │   │   ├── join-query.png
+│   │   │   ├── revenue-query.png
+│   │   │   └── executive-summary-query.png
+│   │   └── configs/
+│   │       ├── systemd/
+│   │       │   └── node_exporter.service
+│   │       ├── database/
+│   │       │   └── academy_schema.sql
+│   │       └── domain-join.sh
+│   │
+│   ├── windows-webserver/
+│   │   ├── CONFIGURATION.md
+│   │   ├── screenshots/
+│   │   │   ├── sysprep.png
+│   │   │   ├── domain-join.png
+│   │   │   ├── iis-roles.png
+│   │   │   └── webmail-ports.png
+│   │   └── configs/
+│   │       ├── iis-setup.md
+│   │       ├── web.config
+│   │       └── mail-relay-setup.md
+│   │
+│   └── kali-linux/
+│       ├── CONFIGURATION.md
+│       └── screenshots/
+│
+└── scripts/
+    └── monitoring-setup.sh
 ```
 
 > **Note:** Credentials referenced in project documentation have been redacted from this public repository. The original secured credential sheet is maintained separately.
