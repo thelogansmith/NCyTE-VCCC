@@ -33,6 +33,7 @@ The infrastructure spans **nine virtual machines** across three trust zones, run
 - Deployed Active Directory with domain-joined Windows and Linux workstations
 - Built a MariaDB-backed relational database with multi-table joins and business queries
 - Configured Prometheus + Grafana monitoring across all network zones
+- Configured Wazuh vulnerability detection across all network zones
 - Completed a CSET self-assessment against CSF 2.0 with a documented remediation roadmap
 - Deployed a MailEnable-based internal email system with relay architecture
 
