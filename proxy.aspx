@@ -69,8 +69,16 @@
             else
             {
                 Response.StatusCode = 502;
-                Response.Write("{\"error\":\"Upstream connection failed.\"}");
+                Response.ContentType = "application/json";
+                Response.Write("{\"error\":\"" + ex.Message + "\", \"status\":\""
+                    + ex.Status.ToString() + "\"}");
             }
+        }
+        catch (Exception ex)
+        {
+            Response.StatusCode = 500;
+            Response.ContentType = "application/json";
+            Response.Write("{\"error\":\"" + ex.Message + "\"}");
         }
 
         Response.End();
