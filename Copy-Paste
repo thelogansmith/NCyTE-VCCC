@@ -39,11 +39,17 @@ https://ai.cyberlab.csusb.edu/api
   "messages": [
     {
       "role": "system",
-      "content": "You are a security analyst. Given CPU metrics, classify the severity as low, medium, or high and write a 2-sentence plain-English summary suitable for an alert email."
+      "content": "You are a security analyst for CTA enterprise network. Given system metrics, classify severity as LOW, MEDIUM, or HIGH and write a 2-sentence plain-English alert summary."
     },
     {
       "role": "user",
-      "content": "={{ 'Total CPU usage is ' + $('Code').item.json.totalCpu.toFixed(1) + '%. User: ' + $('Code').item.json.user.toFixed(1) + '%, System: ' + $('Code').item.json.system.toFixed(1) + '%' }}"
+      "content": "={{ 'RHEL Client CPU alert. Total CPU usage: ' + $('Code').item.json.totalCpu.toFixed(1) + '%. User processes: ' + $('Code').item.json.user.toFixed(1) + '%, System: ' + $('Code').item.json.system.toFixed(1) + '%. Timestamp: ' + new Date().toISOString() }}"
     }
-  ]
+  ],
+  "temperature": 0.3,
+  "max_tokens": 150
 }
+
+
+sudo nano /etc/systemd/system/n8n.service
+Environment=NODE_TLS_REJECT_UNAUTHORIZED=0
