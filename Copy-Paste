@@ -22,3 +22,11 @@ sudo firewall-cmd --permanent --add-port=5678/tcp
 sudo firewall-cmd --reload
 
 http://192.168.1.101:19999/api/v1/data?chart=system.cpu&after=-60&points=1&format=json
+
+
+const data = $input.first().json.data[0];
+const user = data[6];
+const system = data[7];
+const totalCpu = user + system;
+
+return [{ json: { totalCpu, user, system } }];
