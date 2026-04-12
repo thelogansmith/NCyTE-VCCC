@@ -53,3 +53,20 @@ https://ai.cyberlab.csusb.edu/api
 
 sudo nano /etc/systemd/system/n8n.service
 Environment=NODE_TLS_REJECT_UNAUTHORIZED=0
+
+
+
+const timestamp = new Date().toISOString();
+const totalCpu = $('Code').item.json.totalCpu.toFixed(1);
+const user = $('Code').item.json.user.toFixed(1);
+const system = $('Code').item.json.system.toFixed(1);
+const aiSummary = $('HTTP Request').item.json.choices[0].message.content.replace(/\n/g, ' ');
+
+const logLine = `${timestamp} | ALERT | CPU: ${totalCpu}% (user: ${user}%, sys: ${system}%) | ${aiSummary}\n`;
+
+return [{ json: { logLine } }];
+
+
+echo "={{ $json.logLine }}" >> /var/log/n8n-security-events.log
+
+echo "={{ new Date().toISOString() }} | NORMAL | CPU: {{ $json.totalCpu.toFixed(1) }}% | No action taken" >> /var/log/n8n-security-events.log
