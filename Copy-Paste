@@ -20,3 +20,5 @@ sudo systemctl enable n8n
 sudo systemctl start n8n
 sudo firewall-cmd --permanent --add-port=5678/tcp
 sudo firewall-cmd --reload
+
+curl "http://localhost:19999/api/v1/data?chart=system.cpu&after=-60&points=1&format=json"
