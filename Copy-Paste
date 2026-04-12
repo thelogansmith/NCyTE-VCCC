@@ -30,3 +30,5 @@ const system = data[7];
 const totalCpu = user + system;
 
 return [{ json: { totalCpu, user, system } }];
+
+https://ai.cyberlab.csusb.edu/api
