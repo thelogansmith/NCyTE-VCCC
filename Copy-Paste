@@ -21,4 +21,4 @@ sudo systemctl start n8n
 sudo firewall-cmd --permanent --add-port=5678/tcp
 sudo firewall-cmd --reload
 
-curl "http://localhost:19999/api/v1/data?chart=system.cpu&after=-60&points=1&format=json"
+http://192.168.1.101:19999/api/v1/data?chart=system.cpu&after=-60&points=1&format=json
