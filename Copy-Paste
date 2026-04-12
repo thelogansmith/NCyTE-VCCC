@@ -1,0 +1,22 @@
+[Unit]
+Description=N8N Workflow Automation
+After=network.target
+
+[Service]
+Type=simple
+User=playerone
+ExecStart=/home/playerone/.npm-global/bin/n8n start
+Restart=on-failure
+RestartSec=10
+Environment=N8N_HOST=0.0.0.0
+Environment=N8N_PORT=5678
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo systemctl daemon-reload
+sudo systemctl enable n8n
+sudo systemctl start n8n
+sudo firewall-cmd --permanent --add-port=5678/tcp
+sudo firewall-cmd --reload
