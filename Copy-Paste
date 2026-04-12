@@ -32,3 +32,18 @@ const totalCpu = user + system;
 return [{ json: { totalCpu, user, system } }];
 
 https://ai.cyberlab.csusb.edu/api
+
+
+{
+  "model": "mistral:7b-instruct",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a security analyst. Given CPU metrics, classify the severity as low, medium, or high and write a 2-sentence plain-English summary suitable for an alert email."
+    },
+    {
+      "role": "user",
+      "content": "={{ 'Total CPU usage is ' + $('Code').item.json.totalCpu.toFixed(1) + '%. User: ' + $('Code').item.json.user.toFixed(1) + '%, System: ' + $('Code').item.json.system.toFixed(1) + '%' }}"
+    }
+  ]
+}
