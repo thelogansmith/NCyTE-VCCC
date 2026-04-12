@@ -55,18 +55,30 @@ sudo nano /etc/systemd/system/n8n.service
 Environment=NODE_TLS_REJECT_UNAUTHORIZED=0
 
 
+const fs = require('fs');
 
 const timestamp = new Date().toISOString();
 const totalCpu = $('Code').item.json.totalCpu.toFixed(1);
-const user = $('Code').item.json.user.toFixed(1);
-const system = $('Code').item.json.system.toFixed(1);
-const aiSummary = $('HTTP Request').item.json.choices[0].message.content.replace(/\n/g, ' ');
+const userCpu = $('Code').item.json.user.toFixed(1);
+const systemCpu = $('Code').item.json.system.toFixed(1);
+const aiSummary = $input.item.json.choices[0].message.content.replace(/\n/g, ' ');
 
-const logLine = `${timestamp} | ALERT | CPU: ${totalCpu}% (user: ${user}%, sys: ${system}%) | ${aiSummary}\n`;
+const logLine = `${timestamp} | ALERT | CPU: ${totalCpu}% (user: ${userCpu}%, sys: ${systemCpu}%) | ${aiSummary}\n`;
 
-return [{ json: { logLine } }];
+fs.appendFileSync('/var/log/n8n-security-events.log', logLine);
+
+return [{ json: { success: true, logLine } }];
 
 
-echo "={{ $json.logLine }}" >> /var/log/n8n-security-events.log
 
-echo "={{ new Date().toISOString() }} | NORMAL | CPU: {{ $json.totalCpu.toFixed(1) }}% | No action taken" >> /var/log/n8n-security-events.log
+
+const fs = require('fs');
+
+const timestamp = new Date().toISOString();
+const totalCpu = $input.item.json.totalCpu.toFixed(1);
+
+const logLine = `${timestamp} | NORMAL | CPU: ${totalCpu}% | No threshold exceeded\n`;
+
+fs.appendFileSync('/var/log/n8n-security-events.log', logLine);
+
+return [{ json: { success: true, logLine } }];
